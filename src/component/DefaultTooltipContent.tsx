@@ -28,6 +28,7 @@ export interface Payload<TValue extends ValueType, TName extends NameType> {
   name?: TName;
   value?: TValue;
   unit?: ReactNode;
+  hideUnit?: boolean;
   dataKey?: string | number;
   payload?: any;
   chartType?: string;
@@ -96,7 +97,7 @@ export class DefaultTooltipContent<TValue extends ValueType, TName extends NameT
             {isNumOrStr(name) ? <span className="recharts-tooltip-item-name">{name}</span> : null}
             {isNumOrStr(name) ? <span className="recharts-tooltip-item-separator">{separator}</span> : null}
             <span className="recharts-tooltip-item-value">{value}</span>
-            <span className="recharts-tooltip-item-unit">{entry.unit || ''}</span>
+            {entry.hideUnit ? null : <span className="recharts-tooltip-item-unit">{entry.unit || ''}</span>}
           </li>
         );
       });
